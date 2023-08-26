@@ -11,18 +11,18 @@ const Signup = (props) => {
     email: "",
     password: "",
     cpassword: "",
-    userType: "",
+    type: "",
   });
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const { name, email, password, userType } = credentials;
+    const { name, email, password, type } = credentials;
     const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password , userType}),
+      body: JSON.stringify({ name, email, password , type}),
     });
     const json = await response.json();
     console.log(json);
@@ -41,7 +41,7 @@ const Signup = (props) => {
   };
 
   const userData = (data)=>{
-    credentials.userType = data;
+    credentials.type = data;
   }
 
   return (
