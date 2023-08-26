@@ -15,6 +15,7 @@ router.post(
     body("name", "Name must be of 3 letters").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
     body("password", "password must be min 3 letters").isLength({ min: 3 }),
+    body("type", "Select a valid user type"),
   ],
   async (req, res) => {
     console.log(req.body);
@@ -40,6 +41,7 @@ router.post(
         name: req.body.name,
         password: secPass,
         email: req.body.email,
+        type: req.body.type
       });
 
       const data = {
