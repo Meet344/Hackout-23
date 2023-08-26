@@ -1,0 +1,13 @@
+.login-section {
+    padding: 40px;
+    padding-left: 150px ;
+    display: flex;
+    gap: 15px;
+    background: linear-gradient(to right, #ECF2FF, #FBFCFF);
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    width: 50%;
+}

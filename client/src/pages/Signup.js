@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MyDropdown from "../components/MyDropdown";
+import "../Styles/Signup.css";
+
 
 const Signup = (props) => {
-
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({ name: "", email: "", password: "" , cpassword:""});
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+    userType: "",
+  });
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const {name,email,password} = credentials;
+    const { name, email, password, userType } = credentials;
     const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name, email, password}),
+      body: JSON.stringify({ name, email, password , userType}),
     });
     const json = await response.json();
     console.log(json);
@@ -22,9 +30,9 @@ const Signup = (props) => {
       //Save the authtoken and redirect
       localStorage.setItem("token", json.authtoken);
       navigate("/");
-      props.showAlert("Signed up successfully", "success")
+      props.showAlert("Signed up successfully", "success");
     } else {
-      props.showAlert("Invalid details", "danger")
+      props.showAlert("Invalid details", "danger");
     }
   };
 
@@ -32,9 +40,13 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  const userData = (data)=>{
+    credentials.userType = data;
+  }
+
   return (
-    <div>
-    <form onSubmit={handleClick}>
+    <div className="signup-section">
+      <form onSubmit={handleClick} className="signup-form">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -62,6 +74,15 @@ const Signup = (props) => {
             onChange={onChange}
           />
         </div>
+
+        <div className="mb-3">
+        <label className="form-label"> 
+          Select UserType
+        </label>
+        <MyDropdown userData={userData}/>
+        </div>
+
+
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Password
@@ -92,12 +113,13 @@ const Signup = (props) => {
             required
           />
         </div>
+
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

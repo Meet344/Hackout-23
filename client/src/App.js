@@ -6,11 +6,11 @@ import {
 } from "react-router-dom";
 // import store from './redux/store'
 import Navbar from './components/Navbar';
-import About from './components/About';
-import Home from './components/Home';
+import About from './pages/About';
+import Home from './pages/Home';
 import Alert from './components/Alert';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import { useState } from 'react';
 // import { Provider } from 'react-redux';
 

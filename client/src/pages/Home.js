@@ -1,4 +1,6 @@
 import React from "react";
+import Hero from "../components/Hero";
+import Info from "../components/Info";
 
 
 const Home = (props) => {
@@ -6,7 +8,8 @@ const Home = (props) => {
 
   return (
     <div>
-     Hello
+     <Hero />
+     <Info />
     </div>
   );
 };

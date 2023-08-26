@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Styles/Login.css";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -35,8 +36,8 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleClick}>
+    <div className="login-section">
+      <form onSubmit={handleClick} className="login-form">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email address
